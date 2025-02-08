@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include "stdio.h"
 
 static int add_number(t_stack *stack, char *str)
 {
@@ -80,7 +81,14 @@ int main(int argc, char **argv)
     else
         big_sort(&a, &b);
 
+    while(a->first_node)
+    {
+        printf("%i ", a->first_node->value);
+        a->first_node = a->first_node->next;
+    }
+
     free_stack(a);
     free_stack(b);
+
     return (0);
 }

@@ -1,11 +1,10 @@
 #include "push_swap.h"
-#include <stdlib.h>
 
-// Función para obtener el tamaño de la pila
 int stack_size(t_stack *stack)
 {
     int size = 0;
     t_node *current = stack->first_node;
+    
     while (current)
     {
         size++;
@@ -14,94 +13,132 @@ int stack_size(t_stack *stack)
     return size;
 }
 
-// Función para ordenar tres elementos en la pila
+int get_min_position(t_stack *stack)
+{
+    t_node *current;
+    int min;
+    int pos;
+    int min_pos;
+
+    if (!stack->first_node)
+        return (-1);
+    current = stack->first_node;
+    min = current->value;
+    pos = 0;
+    min_pos = 0;
+    while (current)
+    {
+        if (current->value < min)
+        {
+            min = current->value;
+            min_pos = pos;
+        }
+        pos++;
+        current = current->next;
+    }
+    return (min_pos);
+}
+
 void sort_three(t_stack *a)
 {
-    if (a == NULL || a->first_node == NULL || a->first_node->next == NULL)
+    int first;
+    int second;
+    int third;
+
+    if (!a->first_node || !a->first_node->next || !a->first_node->next->next)
         return;
 
-    if (a->first_node->value > a->first_node->next->value)
-        swap(a, 'a');
+    first = a->first_node->value;
+    second = a->first_node->next->value;
+    third = a->first_node->next->next->value;
 
-    if (a->first_node->next->value > a->first_node->next->next->value)
+    if (first > second && second < third && first < third)
+        swap(a, 'a');
+    else if (first > second && second > third)
+    {
+        swap(a, 'a');
+        reverse_rotate(a, 'a');
+    }
+    else if (first > second && second < third && first > third)
+        rotate(a, 'a');
+    else if (first < second && second > third && first < third)
     {
         swap(a, 'a');
         rotate(a, 'a');
     }
+    else if (first < second && second > third && first > third)
+        reverse_rotate(a, 'a');
 }
 
-// Función para ordenar cinco elementos en las pilas 'a' y 'b'
 void sort_five(t_stack *a, t_stack *b)
 {
-    while (stack_size(a) > 3)
+    int size;
+    int min_pos;
+
+    size = stack_size(a);
+    while (size > 3)
+    {
+        min_pos = get_min_position(a);
+        while (min_pos > 0)
+        {
+            if (min_pos <= size / 2)
+                rotate(a, 'a');
+            else
+                reverse_rotate(a, 'a');
+            min_pos = get_min_position(a);
+        }
         push(a, b, 'b');
+        size--;
+    }
     sort_three(a);
-    while (stack_size(b) > 0)
+    while (b->first_node)
         push(b, a, 'a');
 }
 
-// Función auxiliar para obtener el array ordenado de la pila
-int *sort_stack(t_stack *a)
+int get_max(t_stack *stack)
 {
-    int *sorted_array;
-    int size;
     t_node *current;
-    int i;
+    int max;
 
-    size = stack_size(a);
-    sorted_array = (int *)malloc(sizeof(int) * size);
-    if (!sorted_array)
-        return (NULL);
-    
-    current = a->first_node;
-    i = 0;
+    if (!stack->first_node)
+        return (0);
+    current = stack->first_node;
+    max = current->value;
     while (current)
     {
-        sorted_array[i++] = current->value;
+        if (current->value > max)
+            max = current->value;
         current = current->next;
     }
-    qsort(sorted_array, size, sizeof(int), compare_ints);
-    return sorted_array;
+    return (max);
 }
 
-// Función para comparar dos enteros (para usar con qsort)
-int compare_ints(const void *a, const void *b)
-{
-    return (*(int *)a - *(int *)b);
-}
-
-// Función para determinar el tamaño de los chunks para el "big sort"
-int determine_chunk_size(t_stack *a)
-{
-    int size = stack_size(a);
-    if (size <= 100)
-        return size / 10;
-    return size / 20;
-}
-
-// Función para realizar el "big sort" en las pilas 'a' y 'b'
 void big_sort(t_stack **a, t_stack **b)
 {
-    int *sorted_array;
+    int max_num;
+    int max_bits;
+    int size;
     int i;
-    int chunk_size;
+    int j;
+    int num;
 
-    sorted_array = sort_stack(*a);
-    if (!sorted_array)
-        return;
+    size = stack_size(*a);
+    max_num = size - 1;
+    max_bits = 0;
+    while ((max_num >> max_bits) != 0)
+        ++max_bits;
     
-    chunk_size = determine_chunk_size(*a);
-    i = 0;
-    while (i < stack_size(*a))
+    for (i = 0; i < max_bits; ++i)
     {
-        if ((*a)->first_node->value <= sorted_array[i])
-            push(*a, *b, 'b');
-        else if (stack_size(*b) > 1 && (*b)->first_node->value < sorted_array[i - chunk_size])
-            rotate(*b, 'b');
-        else
-            rotate(*a, 'a');
-        i++;
+        for (j = 0; j < size; ++j)
+        {
+            num = (*a)->first_node->value;
+            if ((num >> i) & 1)
+                rotate(*a, 'a');
+            else
+                push(*a, *b, 'b');
+        }
+        while ((*b)->first_node)
+            push(*b, *a, 'a');
     }
-
-    free(sorted_array);
 }
