@@ -2,7 +2,8 @@ NAME = push_swap
 
 
 # Falta añadir el resto de archivos
-SRC =	main.c \
+SRC = push_swap.c configure_push.c configure_reverse.c configure_rotate.c configure_swap.c sorting.c utils.c
+
 
 
                 

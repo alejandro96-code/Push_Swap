@@ -1,42 +1,21 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   configure_push.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alejanr2 <alejanr2@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 13:30:03 by alejanr2          #+#    #+#             */
-/*   Updated: 2025/02/08 11:08:11 by alejanr2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "push_swap.h"
 
-#include "swap.h"
-
-int	pa(t_stack *a, t_stack *b)
+void push(t_stack **a, t_stack **b, char stack)
 {
-	t_node *temp;
+    t_stack *temp;
 
-	if (b->first_node == NULL)
-		return;
-	temp = b->first_node;
-	b->first_node = b->first_node->next;
-	temp->next = a->first_node;
-	a->first_node = temp;
-	write(1, "pa\n", 4);
-	return (0);
+    if (stack == 'a' && *b)
+    {
+        temp = *b;
+        *b = (*b)->next;
+        temp->next = *a;
+        *a = temp;
+    }
+    else if (stack == 'b' && *a)
+    {
+        temp = *a;
+        *a = (*a)->next;
+        temp->next = *b;
+        *b = temp;
+    }
 }
-
-int	pb(t_stack *a, t_stack *b)
-{
-	t_node *temp;
-	
-	if (a->first_node == NULL)
-		return;
-	temp = a->first_node;
-	a->first_node = a->first_node->next;
-	temp->next = b->first_node;
-	b->first_node = temp;
-	write(1, "pb\n", 4);
-	return (0);
-}
-

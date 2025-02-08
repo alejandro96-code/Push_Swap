@@ -1,23 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alejanr2 <alejanr2@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 13:30:03 by alejanr2          #+#    #+#             */
-/*   Updated: 2025/02/08 08:24:44 by alejanr2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "push_swap.h"
 
-#include "swap.h"
-
-
-int	main(int ac, char **av)
+int main(int argc, char **argv)
 {
-	t_stack	a;
-	t_stack	b;
+    t_stack *a = NULL;
+    t_stack *b = NULL;
 
-	
-	return (0);
+    if (argc < 2)
+        return 0;
+    // Parsing y llenado de la pila 'a' aquí
+    push_swap(&a, &b);
+    return 0;
 }
