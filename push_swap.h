@@ -1,30 +1,41 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdlib.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
 
-typedef struct s_stack
-{
+typedef struct s_node {
     int value;
-    struct s_stack *next;
+    struct s_node *next;
+} t_node;
+
+typedef struct s_stack {
+    t_node *first_node;
 } t_stack;
 
-// Funciones de operaciones
-void push(t_stack **a, t_stack **b, char stack);
-void swap(t_stack *stack, char stack_name);
-void rotate(t_stack **stack, char stack_name);
-void reverse_rotate(t_stack **stack, char stack_name);
+// Funciones de validación
+int     is_number(char *str);
+int     check_duplicates(t_stack *stack);
+long    ft_atol(const char *str);
+void    free_stack(t_stack *stack);
+int     is_sorted(t_stack *stack);
+int     init_stack(t_stack **stack);
 
-// Funciones de sorting
-void push_swap(t_stack **a, t_stack **b);
-void big_sort(t_stack **a, t_stack **b);
-void insert_sorted_back(t_stack **a, t_stack **b, int *sorted_array);
-int find_best_move(t_stack *a, t_stack *b, int *sorted_array);
-void execute_best_move(t_stack **a, t_stack **b, int best_move);
+// Operaciones básicas
+void    push(t_stack *src, t_stack *dest, char stack);
+void    rotate(t_stack *stack, char stack_name);
+void    rr(t_stack *a, t_stack *b);
+void    reverse_rotate(t_stack *stack, char stack_name);
+void    rrr(t_stack *a, t_stack *b);
+void    swap(t_stack *stack, char stack_name);
+void    ss(t_stack *a, t_stack *b);
 
-// Funciones auxiliares
-void stack_push(t_stack **stack, int value);
-int stack_size(t_stack *stack);
-int *stack_to_sorted_array(t_stack *stack);
+// Funciones de ordenamiento
+void    sort_three(t_stack *a);
+void    sort_five(t_stack *a, t_stack *b);
+void    big_sort(t_stack **a, t_stack **b);
+int     stack_size(t_stack *stack);
+int     compare_ints(const void *a, const void *b);
 
 #endif

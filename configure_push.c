@@ -1,21 +1,19 @@
 #include "push_swap.h"
 
-void push(t_stack **a, t_stack **b, char stack)
+void push(t_stack *src, t_stack *dest, char stack)
 {
-    t_stack *temp;
+    t_node *temp;
 
-    if (stack == 'a' && *b)
-    {
-        temp = *b;
-        *b = (*b)->next;
-        temp->next = *a;
-        *a = temp;
-    }
-    else if (stack == 'b' && *a)
-    {
-        temp = *a;
-        *a = (*a)->next;
-        temp->next = *b;
-        *b = temp;
-    }
+    if (src->first_node == NULL)
+        return;
+
+    temp = src->first_node;
+    src->first_node = src->first_node->next;
+    temp->next = dest->first_node;
+    dest->first_node = temp;
+    
+    if (stack == 'a')
+        write(1, "pa\n", 3);
+    else if (stack == 'b')
+        write(1, "pb\n", 3);
 }

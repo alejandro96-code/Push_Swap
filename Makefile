@@ -1,37 +1,31 @@
 NAME = push_swap
 
-
-# Falta añadir el resto de archivos
-SRC = push_swap.c configure_push.c configure_reverse.c configure_rotate.c configure_swap.c sorting.c utils.c
-
-
-
-                
-OBJS = $(SRC:.c=.o)
-
-UNAME_S := $(shell uname -s)
-
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Wextra -Werror
+
+SRCS = main.c \
+       configure_push.c \
+       configure_reverse.c \
+       configure_rotate.c \
+       configure_swap.c \
+       sorting.c \
+       utils.c
+
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-%.o: %.c
-	@$(CC) -I $(CFLAGS) -c $^ -o $@
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-$(NAME): $(OBJS)	
-	@printf "\e[43m\e[30mCompilando Archivos Propios\e[0m\n"
-	@$(CC) $(OBJS) -o $(NAME)
-	@printf "\e[42m\e[30mArchivos Propios Compilados\e[0m\n"
+%.o: %.c push_swap.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJS)
-	@printf "\e[42m\e[30mEliminados los archivos generados propios .o\e[0m\n"
-
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
-	@printf "\e[42m\e[30mEliminados todos los archivos generados\e[0m\n"
 
 re: fclean all
 
