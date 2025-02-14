@@ -41,6 +41,20 @@ static int process_arguments(int argc, char **argv, t_stack *a)
     return (1);
 }
 
+void print_stack(t_stack *stack, char name)
+{
+    t_node *current = stack->first_node;
+
+    printf("Stack %c:\n", name);
+    printf("---------\n");
+    while (current)
+    {
+        printf("  %d\n", current->value);
+        current = current->next;
+    }
+    printf("---------\n");
+}
+
 int main(int argc, char **argv)
 {
     t_stack *a;
@@ -63,8 +77,10 @@ int main(int argc, char **argv)
     {
         free_stack(a);
         free_stack(b);
+        printf("The stack is already sorted.\n");
         return (0);
     }
+
     if (stack_size(a) == 2)
         swap(a, 'a');
     else if (stack_size(a) == 3)
@@ -73,6 +89,17 @@ int main(int argc, char **argv)
         sort_five(a, b);
     else
         big_sort(&a, &b);
+
+    // Imprimir el estado final del stack A
+    printf("\nFinal state of stack A:\n");
+    print_stack(a, 'A');
+
+    // Verificar si la pila está ordenada correctamente
+    if (is_sorted(a))
+        printf("✅ Sorting completed successfully!\n");
+    else
+        printf("❌ Sorting failed. The stack is not sorted correctly.\n");
+
     free_stack(a);
     free_stack(b);
     return (0);

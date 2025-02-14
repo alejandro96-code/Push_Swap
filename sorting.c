@@ -95,13 +95,11 @@ void big_sort(t_stack **a, t_stack **b)
 {
     int size;
     int min;
-    int max;
     int chunk_size;
     int i;
 
     size = stack_size(*a);
     min = (*a)->first_node->value;
-    max = find_next_max(*a);
     chunk_size = (size <= 100) ? size / 5 : size / 11;
 
     for (i = 0; i < 5; i++)
