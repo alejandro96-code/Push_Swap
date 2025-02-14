@@ -36,6 +36,6 @@ void    sort_three(t_stack *a);
 void    sort_five(t_stack *a, t_stack *b);
 void    big_sort(t_stack **a, t_stack **b);
 int     stack_size(t_stack *stack);
-int     compare_ints(const void *a, const void *b);
+int     get_min_position(t_stack *stack);
 
 #endif

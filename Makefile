@@ -4,12 +4,11 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = main.c \
-       configure_push.c \
-       configure_reverse.c \
-       configure_rotate.c \
-       configure_swap.c \
+       operations.c \
+       operations_combined.c \
        sorting.c \
-       utils.c
+       utils_stack.c \
+       utils.c \
 
 OBJS = $(SRCS:.c=.o)
 

@@ -27,9 +27,6 @@ long ft_atol(const char *str)
     result = 0;
     sign = 1;
     i = 0;
-
-    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-        i++;
     if (str[i] == '-' || str[i] == '+')
     {
         if (str[i] == '-')
@@ -62,46 +59,4 @@ int check_duplicates(t_stack *stack)
         current = current->next;
     }
     return (0);
-}
-
-void free_stack(t_stack *stack)
-{
-    t_node *current;
-    t_node *next;
-
-    if (!stack)
-        return;
-    current = stack->first_node;
-    while (current)
-    {
-        next = current->next;
-        free(current);
-        current = next;
-    }
-    free(stack);
-}
-
-int is_sorted(t_stack *stack)
-{
-    t_node *current;
-
-    if (!stack || !stack->first_node)
-        return (1);
-    current = stack->first_node;
-    while (current->next)
-    {
-        if (current->value > current->next->value)
-            return (0);
-        current = current->next;
-    }
-    return (1);
-}
-
-int init_stack(t_stack **stack)
-{
-    *stack = malloc(sizeof(t_stack));
-    if (!*stack)
-        return (0);
-    (*stack)->first_node = NULL;
-    return (1);
 }

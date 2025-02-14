@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include "stdio.h"
 
 static int add_number(t_stack *stack, char *str)
 {
@@ -11,11 +10,9 @@ static int add_number(t_stack *stack, char *str)
     num = ft_atol(str);
     if (num > INT_MAX || num < INT_MIN)
         return (0);
-    
     new_node = malloc(sizeof(t_node));
     if (!new_node)
         return (0);
-    
     new_node->value = (int)num;
     new_node->next = stack->first_node;
     stack->first_node = new_node;
@@ -51,27 +48,23 @@ int main(int argc, char **argv)
 
     if (argc < 2)
         return (0);
-
     if (!init_stack(&a) || !init_stack(&b))
     {
         write(2, "Error\n", 6);
         return (1);
     }
-
     if (!process_arguments(argc, argv, a))
     {
         free_stack(a);
         free_stack(b);
         return (1);
     }
-
     if (is_sorted(a))
     {
         free_stack(a);
         free_stack(b);
         return (0);
     }
-
     if (stack_size(a) == 2)
         swap(a, 'a');
     else if (stack_size(a) == 3)
@@ -80,15 +73,7 @@ int main(int argc, char **argv)
         sort_five(a, b);
     else
         big_sort(&a, &b);
-
-    while(a->first_node)
-    {
-        printf("%i ", a->first_node->value);
-        a->first_node = a->first_node->next;
-    }
-
     free_stack(a);
     free_stack(b);
-
     return (0);
 }

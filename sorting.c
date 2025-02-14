@@ -1,52 +1,10 @@
 #include "push_swap.h"
 
-int stack_size(t_stack *stack)
-{
-    int size = 0;
-    t_node *current = stack->first_node;
-    
-    while (current)
-    {
-        size++;
-        current = current->next;
-    }
-    return size;
-}
-
-int get_min_position(t_stack *stack)
-{
-    t_node *current;
-    int min;
-    int pos;
-    int min_pos;
-
-    if (!stack->first_node)
-        return (-1);
-    current = stack->first_node;
-    min = current->value;
-    pos = 0;
-    min_pos = 0;
-    while (current)
-    {
-        if (current->value < min)
-        {
-            min = current->value;
-            min_pos = pos;
-        }
-        pos++;
-        current = current->next;
-    }
-    return (min_pos);
-}
-
 void sort_three(t_stack *a)
 {
     int first;
     int second;
     int third;
-
-    if (!a->first_node || !a->first_node->next || !a->first_node->next->next)
-        return;
 
     first = a->first_node->value;
     second = a->first_node->next->value;
@@ -95,13 +53,33 @@ void sort_five(t_stack *a, t_stack *b)
         push(b, a, 'a');
 }
 
-int get_max(t_stack *stack)
+static void push_chunk(t_stack **a, t_stack **b, int chunk_min, int chunk_max)
+{
+    int i;
+    int size;
+
+    size = stack_size(*a);
+    i = 0;
+    while (i < size && (*a)->first_node)
+    {
+        if ((*a)->first_node->value >= chunk_min && 
+            (*a)->first_node->value <= chunk_max)
+        {
+            push(*a, *b, 'b');
+            if ((*b)->first_node->value < chunk_max)
+                rotate(*b, 'b');
+        }
+        else
+            rotate(*a, 'a');
+        i++;
+    }
+}
+
+static int find_next_max(t_stack *stack)
 {
     t_node *current;
     int max;
 
-    if (!stack->first_node)
-        return (0);
     current = stack->first_node;
     max = current->value;
     while (current)
@@ -115,30 +93,41 @@ int get_max(t_stack *stack)
 
 void big_sort(t_stack **a, t_stack **b)
 {
-    int max_num;
-    int max_bits;
     int size;
+    int min;
+    int max;
+    int chunk_size;
     int i;
-    int j;
-    int num;
 
     size = stack_size(*a);
-    max_num = size - 1;
-    max_bits = 0;
-    while ((max_num >> max_bits) != 0)
-        ++max_bits;
-    
-    for (i = 0; i < max_bits; ++i)
+    min = (*a)->first_node->value;
+    max = find_next_max(*a);
+    chunk_size = (size <= 100) ? size / 5 : size / 11;
+
+    for (i = 0; i < 5; i++)
     {
-        for (j = 0; j < size; ++j)
+        int chunk_min = min + (i * chunk_size);
+        int chunk_max = chunk_min + chunk_size - 1;
+        push_chunk(a, b, chunk_min, chunk_max);
+    }
+
+    while ((*b)->first_node)
+    {
+        int curr_max = find_next_max(*b);
+        t_node *current = (*b)->first_node;
+        int pos = 0;
+        while (current && current->value != curr_max)
         {
-            num = (*a)->first_node->value;
-            if ((num >> i) & 1)
-                rotate(*a, 'a');
-            else
-                push(*a, *b, 'b');
+            pos++;
+            current = current->next;
         }
-        while ((*b)->first_node)
-            push(*b, *a, 'a');
+        while ((*b)->first_node->value != curr_max)
+        {
+            if (pos <= stack_size(*b) / 2)
+                rotate(*b, 'b');
+            else
+                reverse_rotate(*b, 'b');
+        }
+        push(*b, *a, 'a');
     }
 }
