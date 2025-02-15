@@ -55,6 +55,18 @@ void print_stack(t_stack *stack, char name)
     printf("---------\n");
 }
 
+void print_final_stack(t_stack *stack)
+{
+    t_node *current = stack->first_node;
+    while (current)
+    {
+        char buffer[12];
+        int len = sprintf(buffer, "%d\n", current->value);
+        write(1, buffer, len);
+        current = current->next;
+    }
+}
+
 int main(int argc, char **argv)
 {
     t_stack *a;
@@ -62,25 +74,10 @@ int main(int argc, char **argv)
 
     if (argc < 2)
         return (0);
-    if (!init_stack(&a) || !init_stack(&b))
-    {
-        write(2, "Error\n", 6);
-        return (1);
-    }
-    if (!process_arguments(argc, argv, a))
-    {
-        free_stack(a);
-        free_stack(b);
-        return (1);
-    }
+    if (!init_stack(&a) || !init_stack(&b) || !process_arguments(argc, argv, a))
+        return (write(2, "Error\n", 6), 1);
     if (is_sorted(a))
-    {
-        free_stack(a);
-        free_stack(b);
-        printf("The stack is already sorted.\n");
-        return (0);
-    }
-
+        return (free_stack(a), free_stack(b), 0);
     if (stack_size(a) == 2)
         swap(a, 'a');
     else if (stack_size(a) == 3)
@@ -89,17 +86,7 @@ int main(int argc, char **argv)
         sort_five(a, b);
     else
         big_sort(&a, &b);
-
-    // Imprimir el estado final del stack A
-    printf("\nFinal state of stack A:\n");
-    print_stack(a, 'A');
-
-    // Verificar si la pila está ordenada correctamente
-    if (is_sorted(a))
-        printf("✅ Sorting completed successfully!\n");
-    else
-        printf("❌ Sorting failed. The stack is not sorted correctly.\n");
-
+    print_final_stack(a);
     free_stack(a);
     free_stack(b);
     return (0);
