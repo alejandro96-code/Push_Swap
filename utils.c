@@ -1,5 +1,12 @@
 #include "push_swap.h"
 
+void free_moves(t_moves *moves)
+{
+    if (!moves || !moves->moves)
+        return;
+    free(moves->moves);
+}
+
 int is_number(char *str)
 {
     int i;

@@ -50,5 +50,6 @@ int     get_min_value(t_stack *stack);
 int     get_max_value(t_stack *stack);
 void print_moves(t_moves *moves);
 int init_moves(t_moves *moves, int max_size);
+void free_moves(t_moves *moves);
 
 #endif
