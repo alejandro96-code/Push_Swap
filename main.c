@@ -73,10 +73,12 @@ void print_final_stack(t_stack *stack)
 
 void print_moves(t_moves *moves)
 {
-    for (int i = 0; i < moves->count; i++)
+    int i = 0;
+    while (i < moves->count)
     {
         write(1, moves->moves[i], 3);
         write(1, "\n", 1);
+        i++;
     }
 }
 
@@ -131,8 +133,7 @@ int main(int argc, char **argv)
 
     print_moves(moves);
     print_final_stack(a);
-
-    // Liberar memoria
+    printf("Se han realizado %d operaciones\n", moves->count);
     free_moves(moves);
     free(moves);
     free_stack(a);

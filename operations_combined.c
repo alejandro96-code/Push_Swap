@@ -23,5 +23,6 @@ void rrr(t_stack *a, t_stack *b, t_moves *moves)
     reverse_rotate(a, 'a', moves);  // Usamos 'a' para la pila 'a'
     reverse_rotate(b, 'b', moves);  // Usamos 'b' para la pila 'b'
     moves->moves[moves->count] = "rrr";  // Alma
+    moves->count++;  // Incrementar el contador
     write(1, "rrr\n", 4);
 }
