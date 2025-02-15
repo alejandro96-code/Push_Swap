@@ -4,15 +4,15 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-#include <stdio.h>
+# include <stdio.h>
 
 typedef struct s_node {
-    int value;
-    struct s_node *next;
+    int             value;
+    struct s_node   *next;
 } t_node;
 
 typedef struct s_stack {
-    t_node *first_node;
+    t_node  *first_node;
 } t_stack;
 
 // Funciones de validación
@@ -38,5 +38,7 @@ void    sort_five(t_stack *a, t_stack *b);
 void    big_sort(t_stack **a, t_stack **b);
 int     stack_size(t_stack *stack);
 int     get_min_position(t_stack *stack);
+int     get_min_value(t_stack *stack);
+int     get_max_value(t_stack *stack);
 
 #endif
