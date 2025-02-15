@@ -60,3 +60,12 @@ int check_duplicates(t_stack *stack)
     }
     return (0);
 }
+
+int init_moves(t_moves *moves, int max_size)
+{
+    moves->moves = malloc(sizeof(char *) * max_size);
+    if (!moves->moves)
+        return (0);
+    moves->count = 0;
+    return (1);
+}

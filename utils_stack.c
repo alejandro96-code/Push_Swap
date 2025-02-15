@@ -116,5 +116,6 @@ int init_stack(t_stack **stack)
     if (!*stack)
         return (0);
     (*stack)->first_node = NULL;
+    (*stack)->move_count = 0;  // Inicializamos el contador
     return (1);
 }

@@ -67,25 +67,37 @@ void print_final_stack(t_stack *stack)
     }
 }
 
+void print_moves(t_moves *moves)
+{
+    for (int i = 0; i < moves->count; i++)
+    {
+        write(1, moves->moves[i], 3);
+        write(1, "\n", 1);
+    }
+}
+
 int main(int argc, char **argv)
 {
     t_stack *a;
     t_stack *b;
+    t_moves moves;
 
+    moves.count = 0;
     if (argc < 2)
         return (0);
-    if (!init_stack(&a) || !init_stack(&b) || !process_arguments(argc, argv, a))
+    if (!init_stack(&a) || !init_stack(&b) || !init_moves(&moves, 1000) || !process_arguments(argc, argv, a))
         return (write(2, "Error\n", 6), 1);
     if (is_sorted(a))
         return (free_stack(a), free_stack(b), 0);
     if (stack_size(a) == 2)
-        swap(a, 'a');
+        swap(a, 'a', &moves);
     else if (stack_size(a) == 3)
-        sort_three(a);
+        sort_three(a, &moves);
     else if (stack_size(a) <= 5)
-        sort_five(a, b);
+        sort_five(a, b, &moves);
     else
-        big_sort(&a, &b);
+        big_sort(&a, &b, &moves);
+    print_moves(&moves);
     print_final_stack(a);
     free_stack(a);
     free_stack(b);
