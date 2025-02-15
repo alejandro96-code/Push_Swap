@@ -13,6 +13,7 @@ typedef struct s_node {
 
 typedef struct s_stack {
     t_node  *first_node;
+    int move_count;  // Contador de movimientos dentro de la estructura
 } t_stack;
 
 // Funciones de validación
