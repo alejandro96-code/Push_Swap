@@ -1,8 +1,4 @@
 #include "push_swap.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
-#include <unistd.h>
 
 static int add_number(t_stack *stack, char *str)
 {
@@ -32,14 +28,14 @@ static int process_arguments(int argc, char **argv, t_stack *a)
     {
         if (!add_number(a, argv[i]))
         {
-            write(2, "Error1\n", 7);
+            write(2, "Error\n", 6);
             return (0);
         }
         i++;
     }
     if (check_duplicates(a))
     {
-        write(2, "Error2\n", 7);
+        write(2, "Error\n", 6);
         return (0);
     }
     return (1);
@@ -71,73 +67,27 @@ void print_final_stack(t_stack *stack)
     }
 }
 
-void print_moves(t_moves *moves)
-{
-    int i = 0;
-    while (i < moves->count)
-    {
-        write(1, moves->moves[i], 3);
-        write(1, "\n", 1);
-        i++;
-    }
-}
-
 int main(int argc, char **argv)
 {
     t_stack *a;
     t_stack *b;
-    t_moves *moves;
 
     if (argc < 2)
         return (0);
-
-    // Inicializar las pilas
-    if (!init_stack(&a) || !init_stack(&b))
-        return (write(2, "Error3\n", 7), 1);
-
-    // Reservar memoria para moves
-    moves = malloc(sizeof(t_moves));
-    if (!moves)
-    {
-        free_stack(a);
-        free_stack(b);
-        return (write(2, "Error4\n", 7), 1);
-    }
-
-    if (!init_moves(moves, 1000) || !process_arguments(argc, argv, a))
-    {
-        free(moves);
-        free_stack(a);
-        free_stack(b);
-        return (write(2, "Error5\n", 7), 1);
-    }
-
-    // Si ya está ordenado, no hacer nada
+    if (!init_stack(&a) || !init_stack(&b) || !process_arguments(argc, argv, a))
+        return (write(2, "Error\n", 6), 1);
     if (is_sorted(a))
-    {
-        free_moves(moves);
-        free(moves);
-        free_stack(a);
-        free_stack(b);
-        return (0);
-    }
-
+        return (free_stack(a), free_stack(b), 0);
     if (stack_size(a) == 2)
-        swap(a, 'a', moves);
+        swap(a, 'a');
     else if (stack_size(a) == 3)
-        sort_three(a, moves);
+        sort_three(a);
     else if (stack_size(a) <= 5)
-        sort_five(a, b, moves);
+        sort_five(a, b);
     else
-        big_sort(&a, &b, moves);
-
-    print_moves(moves);
+        big_sort(&a, &b);
     print_final_stack(a);
-    printf("Se han realizado %d operaciones\n", moves->count);
-    free_moves(moves);
-    free(moves);
     free_stack(a);
     free_stack(b);
-
     return (0);
 }

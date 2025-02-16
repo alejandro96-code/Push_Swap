@@ -1,25 +1,22 @@
 #include "push_swap.h"
 
-void ss(t_stack *a, t_stack *b, t_moves *moves)
+void ss(t_stack *a, t_stack *b)
 {
-    swap(a, 'a', moves);  // Usamos 'a' para la pila 'a'
-    swap(b, 'b', moves);  // Usamos 'b' para la pila 'b'
-    moves->moves[moves->count] = "ss";  // Almacenar la operación
-    moves->count++;  // Incrementar el contador
+    swap(a, 'x');
+    swap(b, 'x');
+    write(1, "ss\n", 3);
 }
 
-void rr(t_stack *a, t_stack *b, t_moves *moves)
+void rr(t_stack *a, t_stack *b)
 {
-    rotate(a, 'a', moves);  // Usamos 'a' para la pila 'a'
-    rotate(b, 'b', moves);  // Usamos 'b' para la pila 'b'
-    moves->moves[moves->count] = "rr";  // Almacenar la operación
-    moves->count++;  // Incrementar el contador
+    rotate(a, 'x');
+    rotate(b, 'x');
+    write(1, "rr\n", 3);
 }
 
-void rrr(t_stack *a, t_stack *b, t_moves *moves)
+void rrr(t_stack *a, t_stack *b)
 {
-    reverse_rotate(a, 'a', moves);  // Usamos 'a' para la pila 'a'
-    reverse_rotate(b, 'b', moves);  // Usamos 'b' para la pila 'b'
-    moves->moves[moves->count] = "rrr";  // Alma
-    moves->count++;  // Incrementar el contador
+    reverse_rotate(a, 'x');
+    reverse_rotate(b, 'x');
+    write(1, "rrr\n", 4);
 }

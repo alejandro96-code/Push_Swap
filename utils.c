@@ -1,12 +1,5 @@
 #include "push_swap.h"
 
-void free_moves(t_moves *moves)
-{
-    if (!moves || !moves->moves)
-        return;
-    free(moves->moves);
-}
-
 int is_number(char *str)
 {
     int i;
@@ -66,13 +59,4 @@ int check_duplicates(t_stack *stack)
         current = current->next;
     }
     return (0);
-}
-
-int init_moves(t_moves *moves, int max_size)
-{
-    moves->moves = malloc(sizeof(char *) * max_size);
-    if (!moves->moves)
-        return (0);
-    moves->count = 0;
-    return (1);
 }
