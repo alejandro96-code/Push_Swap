@@ -54,6 +54,18 @@ void rotate(t_stack *stack, char stack_name)
         write(1, "rb\n", 3);
 }
 
+t_node *get_last_and_second_last(t_stack *stack, t_node **second_last)
+{
+    t_node *last = stack->first_node;
+    *second_last = NULL;
+
+    while (last && last->next)
+    {
+        *second_last = last;
+        last = last->next;
+    }
+    return last;
+}
 void reverse_rotate(t_stack *stack, char stack_name)
 {
     t_node *last;
@@ -62,19 +74,7 @@ void reverse_rotate(t_stack *stack, char stack_name)
     if (!stack->first_node || !stack->first_node->next)
         return;
 
-    last = stack->first_node;
-    second_last = NULL;
-
-    t_node *temp = stack->first_node;
-    while (temp)
-    {
-        temp = temp->next;
-    }
-    while (last->next)
-    {
-        second_last = last;
-        last = last->next;
-    }
+    last = get_last_and_second_last(stack, &second_last);
 
     if (second_last)
     {
@@ -83,11 +83,6 @@ void reverse_rotate(t_stack *stack, char stack_name)
         stack->first_node = last;
     }
 
-    temp = stack->first_node;
-    while (temp)
-    {
-        temp = temp->next;
-    }
     if (stack_name == 'a')
         write(1, "rra\n", 4);
     else if (stack_name == 'b')
