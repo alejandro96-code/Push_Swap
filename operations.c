@@ -59,18 +59,50 @@ void reverse_rotate(t_stack *stack, char stack_name)
     t_node *last;
     t_node *second_last;
 
+    // Si la pila está vacía o tiene solo un elemento, no se realiza ninguna rotación
     if (!stack->first_node || !stack->first_node->next)
         return;
+
+    // Inicialización de punteros
     last = stack->first_node;
     second_last = NULL;
+
+    // Imprimir estado antes de la rotación
+    //printf("Estado inicial de la pila %c: ", stack_name);
+    t_node *temp = stack->first_node;
+    while (temp)
+    {
+        //printf("%d ", temp->value);
+        temp = temp->next;
+    }
+    //printf("\n");
+
+    // Recorrer la lista para encontrar el último y penúltimo nodo
     while (last->next)
     {
         second_last = last;
         last = last->next;
     }
-    second_last->next = NULL;
-    last->next = stack->first_node;
-    stack->first_node = last;
+
+    // Ahora `last` es el último nodo y `second_last` es el penúltimo
+    if (second_last)
+    {
+        second_last->next = NULL;   // El penúltimo nodo ya no debe apuntar al último
+        last->next = stack->first_node; // El último nodo apunta al principio de la pila
+        stack->first_node = last;    // Actualizamos el primer nodo de la pila
+    }
+
+    // Imprimir estado después de la rotación
+    //printf("Estado después de la rotación %c: ", stack_name);
+    temp = stack->first_node;
+    while (temp)
+    {
+        //printf("%d ", temp->value);
+        temp = temp->next;
+    }
+    //printf("\n");
+
+    // Imprimir la operación realizada
     if (stack_name == 'a')
         write(1, "rra\n", 4);
     else if (stack_name == 'b')

@@ -37,7 +37,6 @@ static void push_small_to_b(t_stack *a, t_stack *b, int max_push)
     while (pushed < max_push)
     {
         min = get_min_value(a);
-        printf("Pushing min %d to B\n", min);
         int moves = 0;
         while (a->first_node->value != min)
         {
@@ -83,7 +82,6 @@ static void sort_chunk(t_stack **a, t_stack **b, int min, int max)
     {
         if ((*a)->first_node->value >= min && (*a)->first_node->value <= max)
         {
-            printf("Pushing %d to B\n", (*a)->first_node->value);
             push(*a, *b, 'b');
             if ((*b)->first_node->value < (min + max) / 2)
                 rotate(*b, 'b');
@@ -139,25 +137,25 @@ void big_sort(t_stack **a, t_stack **b)
     max = get_max_value(*a);
     chunk_size = (max - min) / 4;
     i = 0;
-    printf("Sorting in chunks (size: %d, min: %d, max: %d, chunk_size: %d)\n", size, min, max, chunk_size);
+    //printf("Sorting in chunks (size: %d, min: %d, max: %d, chunk_size: %d)\n", size, min, max, chunk_size);
     
     while (i < 4)
     {
-        printf("Sorting chunk %d (min: %d, max: %d)\n", i, min + (i * chunk_size), min + ((i + 1) * chunk_size));
+        //printf("Sorting chunk %d (min: %d, max: %d)\n", i, min + (i * chunk_size), min + ((i + 1) * chunk_size));
         sort_chunk(a, b, min + (i * chunk_size), min + ((i + 1) * chunk_size));
         i++;
     }
 
     while (*a && (*a)->first_node)
     {
-        printf("Pushing remaining elements from A to B\n");
+        //printf("Pushing remaining elements from A to B\n");
         push(*a, *b, 'b');
     }
 
     while (*b && (*b)->first_node)
     {
         max = get_max_value(*b);
-        printf("Moving max %d from B to A\n", max);
+        //printf("Moving max %d from B to A\n", max);
         while ((*b)->first_node->value != max)
         {
             if (get_max_position(*b) <= stack_size(*b) / 2)
