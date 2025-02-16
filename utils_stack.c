@@ -109,12 +109,3 @@ int is_sorted(t_stack *stack)
     }
     return (1);
 }
-
-int init_stack(t_stack **stack)
-{
-    *stack = malloc(sizeof(t_stack));
-    if (!*stack)
-        return (0);
-    (*stack)->first_node = NULL;
-    return (1);
-}

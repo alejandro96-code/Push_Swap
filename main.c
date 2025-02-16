@@ -16,7 +16,6 @@ static int add_number(t_stack *stack, char *str)
         return (0);
     new_node->value = (int)num;
     new_node->next = NULL;
-
     if (!stack->first_node)
         stack->first_node = new_node;
     else
@@ -61,6 +60,14 @@ void print_final_stack(t_stack *stack)
         write(1, buffer, len);
         current = current->next;
     }
+}
+int init_stack(t_stack **stack)
+{
+    *stack = malloc(sizeof(t_stack));
+    if (!*stack)
+        return (0);
+    (*stack)->first_node = NULL;
+    return (1);
 }
 
 int main(int argc, char **argv)
