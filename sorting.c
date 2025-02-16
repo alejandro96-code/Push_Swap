@@ -37,7 +37,6 @@ static void push_small_to_b(t_stack *a, t_stack *b, int max_push, t_moves *moves
     while (pushed < max_push)
     {
         min = get_min_value(a);
-        printf("Pushing min %d to B\n", min);
         int moves_count = 0; // Renombrado para evitar conflicto con el puntero 'moves'
         while (a->first_node->value != min)
         {
@@ -49,7 +48,7 @@ static void push_small_to_b(t_stack *a, t_stack *b, int max_push, t_moves *moves
             moves_count++;
             if (moves_count > stack_size(a)) // Evita bucle infinito
             {
-                printf("Error: infinite loop detected in push_small_to_b!\n");
+                printf("Error6: infinite loop detected in push_small_to_b!\n");
                 return;
             }
         }
@@ -83,7 +82,6 @@ static void sort_chunk(t_stack **a, t_stack **b, int min, int max, t_moves *move
     {
         if ((*a)->first_node->value >= min && (*a)->first_node->value <= max)
         {
-            printf("Pushing %d to B\n", (*a)->first_node->value);
             push(*a, *b, 'b', moves);       // Usar moves correctamente
             if ((*b)->first_node->value < (min + max) / 2)
                 rotate(*b, 'b', moves);    // Usar moves correctamente
@@ -155,7 +153,6 @@ void big_sort(t_stack **a, t_stack **b, t_moves *moves)
     while (*b && (*b)->first_node)
     {
         max = get_max_value(*b);
-        printf("Moving max %d from B to A\n", max);
         while ((*b)->first_node->value != max)
         {
             if (get_max_position(*b) <= stack_size(*b) / 2)

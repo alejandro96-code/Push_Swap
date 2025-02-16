@@ -32,14 +32,14 @@ static int process_arguments(int argc, char **argv, t_stack *a)
     {
         if (!add_number(a, argv[i]))
         {
-            write(2, "Error\n", 6);
+            write(2, "Error1\n", 7);
             return (0);
         }
         i++;
     }
     if (check_duplicates(a))
     {
-        write(2, "Error\n", 6);
+        write(2, "Error2\n", 7);
         return (0);
     }
     return (1);
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
 
     // Inicializar las pilas
     if (!init_stack(&a) || !init_stack(&b))
-        return (write(2, "Error\n", 6), 1);
+        return (write(2, "Error3\n", 7), 1);
 
     // Reservar memoria para moves
     moves = malloc(sizeof(t_moves));
@@ -101,7 +101,7 @@ int main(int argc, char **argv)
     {
         free_stack(a);
         free_stack(b);
-        return (write(2, "Error\n", 6), 1);
+        return (write(2, "Error4\n", 7), 1);
     }
 
     if (!init_moves(moves, 1000) || !process_arguments(argc, argv, a))
@@ -109,7 +109,7 @@ int main(int argc, char **argv)
         free(moves);
         free_stack(a);
         free_stack(b);
-        return (write(2, "Error\n", 6), 1);
+        return (write(2, "Error5\n", 7), 1);
     }
 
     // Si ya está ordenado, no hacer nada

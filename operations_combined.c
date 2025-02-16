@@ -6,7 +6,6 @@ void ss(t_stack *a, t_stack *b, t_moves *moves)
     swap(b, 'b', moves);  // Usamos 'b' para la pila 'b'
     moves->moves[moves->count] = "ss";  // Almacenar la operación
     moves->count++;  // Incrementar el contador
-    write(1, "ss\n", 3);
 }
 
 void rr(t_stack *a, t_stack *b, t_moves *moves)
@@ -15,7 +14,6 @@ void rr(t_stack *a, t_stack *b, t_moves *moves)
     rotate(b, 'b', moves);  // Usamos 'b' para la pila 'b'
     moves->moves[moves->count] = "rr";  // Almacenar la operación
     moves->count++;  // Incrementar el contador
-    write(1, "rr\n", 3);
 }
 
 void rrr(t_stack *a, t_stack *b, t_moves *moves)
@@ -24,5 +22,4 @@ void rrr(t_stack *a, t_stack *b, t_moves *moves)
     reverse_rotate(b, 'b', moves);  // Usamos 'b' para la pila 'b'
     moves->moves[moves->count] = "rrr";  // Alma
     moves->count++;  // Incrementar el contador
-    write(1, "rrr\n", 4);
 }
