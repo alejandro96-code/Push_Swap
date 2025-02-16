@@ -2,29 +2,25 @@
 
 void push_small_to_b(t_stack *a, t_stack *b, int max_push)
 {
-    int pushed = 0;
+    int pushed;
     int min;
+    int stack_len;
 
-    while (pushed < max_push)
+    pushed = 0;
+    stack_len = stack_size(a);
+    while (pushed < max_push && stack_len > 0)
     {
         min = get_min_value(a);
-        int moves = 0;
-        while (a->first_node->value != min)
+        if (a->first_node->value == min)
         {
-            if (get_min_position(a) <= stack_size(a) / 2)
-                rotate(a, 'a');
-            else
-                reverse_rotate(a, 'a');
-            
-            moves++;
-            if (moves > stack_size(a))
-            {  
-                write(2, "Error: infinite loop\n", 21);
-                return;
-            }
+            push(a, b, 'b');
+            pushed++;
         }
-        push(a, b, 'b');
-        pushed++;
+        else if (get_min_position(a) <= stack_len / 2)
+            rotate(a, 'a');
+        else
+            reverse_rotate(a, 'a');
+        stack_len = stack_size(a);
     }
 }
 
