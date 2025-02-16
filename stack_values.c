@@ -61,34 +61,28 @@ int get_min_position(t_stack *stack)
     }
     return (min_pos);
 }
-
-int stack_size(t_stack *stack)
+int get_max_position(t_stack *stack)
 {
-    int size;
     t_node *current;
+    int max;
+    int pos;
+    int max_pos;
 
-    size = 0;
+    if (!stack->first_node)
+        return (-1);
     current = stack->first_node;
+    max = current->value;
+    pos = 0;
+    max_pos = 0;
     while (current)
     {
-        size++;
+        if (current->value > max)
+        {
+            max = current->value;
+            max_pos = pos;
+        }
+        pos++;
         current = current->next;
     }
-    return (size);
-}
-
-int is_sorted(t_stack *stack)
-{
-    t_node *current;
-
-    if (!stack || !stack->first_node)
-        return (1);
-    current = stack->first_node;
-    while (current->next)
-    {
-        if (current->value > current->next->value)
-            return (0);
-        current = current->next;
-    }
-    return (1);
+    return (max_pos);
 }

@@ -6,10 +6,12 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS = main.c \
        operations.c \
        operations_combined.c \
-       sorting.c \
-       utils_stack.c \
-       utils.c \
-       free_stack.c \
+       short_big.c \
+       short_small.c \
+       stack_utils.c \
+       stack_values.c \
+       check_utils.c \
+       memory.c \
 
 OBJS = $(SRCS:.c=.o)
 

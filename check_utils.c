@@ -18,29 +18,6 @@ int is_number(char *str)
     return (1);
 }
 
-long ft_atol(const char *str)
-{
-    long    result;
-    int     sign;
-    int     i;
-
-    result = 0;
-    sign = 1;
-    i = 0;
-    if (str[i] == '-' || str[i] == '+')
-    {
-        if (str[i] == '-')
-            sign = -1;
-        i++;
-    }
-    while (str[i] >= '0' && str[i] <= '9')
-    {
-        result = result * 10 + (str[i] - '0');
-        i++;
-    }
-    return (result * sign);
-}
-
 int check_duplicates(t_stack *stack)
 {
     t_node *current;
@@ -59,4 +36,20 @@ int check_duplicates(t_stack *stack)
         current = current->next;
     }
     return (0);
+}
+
+int is_sorted(t_stack *stack)
+{
+    t_node *current;
+
+    if (!stack || !stack->first_node)
+        return (1);
+    current = stack->first_node;
+    while (current->next)
+    {
+        if (current->value > current->next->value)
+            return (0);
+        current = current->next;
+    }
+    return (1);
 }
