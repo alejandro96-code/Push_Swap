@@ -17,20 +17,17 @@ static int add_number(t_stack *stack, char *str)
     new_node->value = (int)num;
     new_node->next = NULL;
 
-    // Si la pila está vacía, el nuevo nodo es el primer nodo
     if (!stack->first_node)
     {
         stack->first_node = new_node;
     }
     else
     {
-        // Si la pila no está vacía, recorremos hasta el último nodo
         temp = stack->first_node;
         while (temp->next)
         {
             temp = temp->next;
         }
-        // El último nodo apunta al nuevo nodo
         temp->next = new_node;
     }
 
@@ -104,7 +101,6 @@ int main(int argc, char **argv)
         sort_five(a, b);
     else
         big_sort(&a, &b);
-    //print_final_stack(a);
     free_stack(a);
     free_stack(b);
     return (0);

@@ -46,7 +46,7 @@ static void push_small_to_b(t_stack *a, t_stack *b, int max_push)
                 reverse_rotate(a, 'a');
             
             moves++;
-            if (moves > stack_size(a)) // Evita bucle infinito
+            if (moves > stack_size(a))
             {
                 printf("Error: infinite loop detected in push_small_to_b!\n");
                 return;
@@ -78,7 +78,7 @@ static void sort_chunk(t_stack **a, t_stack **b, int min, int max)
     int initial_size = stack_size(*a);
     int rotated = 0;
 
-    while (*a && (*a)->first_node && rotated < initial_size) // Evita bucle infinito
+    while (*a && (*a)->first_node && rotated < initial_size)
     {
         if ((*a)->first_node->value >= min && (*a)->first_node->value <= max)
         {
@@ -137,25 +137,21 @@ void big_sort(t_stack **a, t_stack **b)
     max = get_max_value(*a);
     chunk_size = (max - min) / 4;
     i = 0;
-    //printf("Sorting in chunks (size: %d, min: %d, max: %d, chunk_size: %d)\n", size, min, max, chunk_size);
     
     while (i < 4)
     {
-        //printf("Sorting chunk %d (min: %d, max: %d)\n", i, min + (i * chunk_size), min + ((i + 1) * chunk_size));
         sort_chunk(a, b, min + (i * chunk_size), min + ((i + 1) * chunk_size));
         i++;
     }
 
     while (*a && (*a)->first_node)
     {
-        //printf("Pushing remaining elements from A to B\n");
         push(*a, *b, 'b');
     }
 
     while (*b && (*b)->first_node)
     {
         max = get_max_value(*b);
-        //printf("Moving max %d from B to A\n", max);
         while ((*b)->first_node->value != max)
         {
             if (get_max_position(*b) <= stack_size(*b) / 2)
