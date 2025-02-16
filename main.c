@@ -18,19 +18,14 @@ static int add_number(t_stack *stack, char *str)
     new_node->next = NULL;
 
     if (!stack->first_node)
-    {
         stack->first_node = new_node;
-    }
     else
     {
         temp = stack->first_node;
         while (temp->next)
-        {
             temp = temp->next;
-        }
         temp->next = new_node;
     }
-
     return (1);
 }
 
@@ -54,20 +49,6 @@ static int process_arguments(int argc, char **argv, t_stack *a)
         return (0);
     }
     return (1);
-}
-
-void print_stack(t_stack *stack, char name)
-{
-    t_node *current = stack->first_node;
-
-    printf("Stack %c:\n", name);
-    printf("---------\n");
-    while (current)
-    {
-        printf("  %d\n", current->value);
-        current = current->next;
-    }
-    printf("---------\n");
 }
 
 void print_final_stack(t_stack *stack)

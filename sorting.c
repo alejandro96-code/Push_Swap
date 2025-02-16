@@ -47,8 +47,8 @@ static void push_small_to_b(t_stack *a, t_stack *b, int max_push)
             
             moves++;
             if (moves > stack_size(a))
-            {
-                printf("Error: infinite loop detected in push_small_to_b!\n");
+            {  
+                write(2, "Error: infinite loop\n", 21);
                 return;
             }
         }
