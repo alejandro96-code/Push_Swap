@@ -33,7 +33,7 @@ int add_number(t_stack *stack, char *str)
     if (!is_number(str))
         return (0);
     num = ft_atol(str);
-    if (num > INT_MAX || num < INT_MIN)
+    if (num > 2147483647  || num < -2147483647 )
         return (0);
     new_node = malloc(sizeof(t_node));
     if (!new_node)
