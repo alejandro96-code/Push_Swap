@@ -12,7 +12,7 @@ int main(int argc, char **argv)
     {
         free_stack(a);
         free_stack(b);
-        write(2, "Error en los argumentos\n", 24);
+        write(2, "Error\n", 6);
         return (1);
     }
     if (stack_size(a) == 2)
