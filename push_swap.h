@@ -19,7 +19,7 @@ typedef struct s_stack {
 int     is_number(char *str);
 int     check_duplicates(t_stack *stack);
 long    ft_atol(const char *str);
-void    free_stack(t_stack *stack);
+void free_stack(t_stack *stack);
 int     is_sorted(t_stack *stack);
 int     init_stack(t_stack **stack);
 

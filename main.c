@@ -50,17 +50,6 @@ static int process_arguments(int argc, char **argv, t_stack *a)
     return (1);
 }
 
-void print_final_stack(t_stack *stack)
-{
-    t_node *current = stack->first_node;
-    while (current)
-    {
-        char buffer[12];
-        int len = sprintf(buffer, "%d\n", current->value);
-        write(1, buffer, len);
-        current = current->next;
-    }
-}
 int init_stack(t_stack **stack)
 {
     *stack = malloc(sizeof(t_stack));

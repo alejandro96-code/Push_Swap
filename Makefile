@@ -9,6 +9,7 @@ SRCS = main.c \
        sorting.c \
        utils_stack.c \
        utils.c \
+       free_stack.c \
 
 OBJS = $(SRCS:.c=.o)
 

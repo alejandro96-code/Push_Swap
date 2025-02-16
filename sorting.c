@@ -119,35 +119,27 @@ int get_max_position(t_stack *stack)
     return (max_pos);
 }
 
-void big_sort(t_stack **a, t_stack **b)
+void split_into_chunks(t_stack **a, t_stack **b, int min, int max)
 {
-    int size;
-    int min;
-    int max;
     int chunk_size;
     int i;
 
-    size = stack_size(*a);
-    if (size <= 5)
-    {
-        sort_five(*a, *b);
-        return;
-    }
-    min = get_min_value(*a);
-    max = get_max_value(*a);
     chunk_size = (max - min) / 4;
     i = 0;
-    
     while (i < 4)
     {
         sort_chunk(a, b, min + (i * chunk_size), min + ((i + 1) * chunk_size));
         i++;
     }
-
     while (*a && (*a)->first_node)
     {
         push(*a, *b, 'b');
     }
+}
+
+void sort_b_stack(t_stack **a, t_stack **b)
+{
+    int max;
 
     while (*b && (*b)->first_node)
     {
@@ -163,3 +155,20 @@ void big_sort(t_stack **a, t_stack **b)
     }
 }
 
+void big_sort(t_stack **a, t_stack **b)
+{
+    int size;
+    int min;
+    int max;
+
+    size = stack_size(*a);
+    if (size <= 5)
+    {
+        sort_five(*a, *b);
+        return;
+    }
+    min = get_min_value(*a);
+    max = get_max_value(*a);
+    split_into_chunks(a, b, min, max);
+    sort_b_stack(a, b);
+}
