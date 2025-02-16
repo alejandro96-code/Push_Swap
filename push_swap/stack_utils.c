@@ -60,16 +60,10 @@ int process_arguments(int argc, char **argv, t_stack *a)
     while (i < argc)
     {
         if (!add_number(a, argv[i]))
-        {
-            write(2, "Error\n", 6);
             return (0);
-        }
         i++;
     }
     if (check_duplicates(a))
-    {
-        write(2, "Error\n", 6);
         return (0);
-    }
     return (1);
 }

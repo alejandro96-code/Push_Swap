@@ -6,7 +6,7 @@ void free_stack(t_stack *stack)
     t_node *next;
 
     if (!stack)
-        return;
+        return;    
     current = stack->first_node;
     while (current)
     {
