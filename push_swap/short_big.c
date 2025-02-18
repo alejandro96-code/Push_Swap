@@ -24,14 +24,14 @@ void sort_chunk(t_stack **a, t_stack **b, int min, int max)
 void split_into_chunks(t_stack **a, t_stack **b, int min, int max)
 {
     int chunk_size;
-    int i;
+    int cont;
 
     chunk_size = (max - min) / 4;
-    i = 0;
-    while (i < 4)
+    cont = 0;
+    while (cont < 4)
     {
-        sort_chunk(a, b, min + (i * chunk_size), min + ((i + 1) * chunk_size));
-        i++;
+        sort_chunk(a, b, min + (cont * chunk_size), min + ((cont + 1) * chunk_size));
+        cont++;
     }
     while (*a && (*a)->first_node)
     {

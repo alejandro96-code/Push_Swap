@@ -21,21 +21,21 @@ long ft_atol(const char *str)
 {
     long    result;
     int     sign;
-    int     i;
+    int     cont;
 
     result = 0;
     sign = 1;
-    i = 0;
-    if (str[i] == '-' || str[i] == '+')
+    cont = 0;
+    if (str[cont] == '-' || str[cont] == '+')
     {
-        if (str[i] == '-')
+        if (str[cont] == '-')
             sign = -1;
-        i++;
+        cont++;
     }
-    while (str[i] >= '0' && str[i] <= '9')
+    while (str[cont] >= '0' && str[cont] <= '9')
     {
-        result = result * 10 + (str[i] - '0');
-        i++;
+        result = result * 10 + (str[cont] - '0');
+        cont++;
     }
     return (result * sign);
 }

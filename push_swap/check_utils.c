@@ -2,18 +2,18 @@
 
 int is_number(char *str)
 {
-    int i;
+    int cont;
 
-    i = 0;
-    if (str[i] == '-' || str[i] == '+')
-        i++;
-    if (!str[i])
+    cont = 0;
+    if (str[cont] == '-' || str[cont] == '+')
+        cont++;
+    if (!str[cont])
         return (0);
-    while (str[i])
+    while (str[cont])
     {
-        if (str[i] < '0' || str[i] > '9')
+        if (str[cont] < '0' || str[cont] > '9')
             return (0);
-        i++;
+        cont++;
     }
     return (1);
 }

@@ -54,14 +54,14 @@ int add_number(t_stack *stack, char *str)
 
 int process_arguments(int argc, char **argv, t_stack *a)
 {
-    int i;
+    int cont;
 
-    i = 1;
-    while (i < argc)
+    cont = 1;
+    while (cont < argc)
     {
-        if (!add_number(a, argv[i]))
+        if (!add_number(a, argv[cont]))
             return (0);
-        i++;
+        cont++;
     }
     if (check_duplicates(a))
         return (0);
