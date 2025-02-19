@@ -6,7 +6,7 @@
 /*   By: alejanr2 <alejanr2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:11:16 by alejanr2          #+#    #+#             */
-/*   Updated: 2025/02/19 18:11:17 by alejanr2         ###   ########.fr       */
+/*   Updated: 2025/02/19 18:16:23 by alejanr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	free_stack(t_stack *stack)
 
 long	ft_atol(const char *str)
 {
-	long result;
-	int sign;
-	int cont;
+	long	result;
+	int		sign;
+	int		cont;
 
 	result = 0;
 	sign = 1;

@@ -6,7 +6,7 @@
 /*   By: alejanr2 <alejanr2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:11:25 by alejanr2          #+#    #+#             */
-/*   Updated: 2025/02/19 18:11:26 by alejanr2         ###   ########.fr       */
+/*   Updated: 2025/02/19 18:14:39 by alejanr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ void	sort_b_stack(t_stack **a, t_stack **b)
 
 void	big_sort(t_stack **a, t_stack **b)
 {
-	int size;
-	int min;
-	int max;
+	int	size;
+	int	min;
+	int	max;
 
 	size = stack_size(*a);
 	if (size <= 5)

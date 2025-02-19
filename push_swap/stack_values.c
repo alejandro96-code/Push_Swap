@@ -6,7 +6,7 @@
 /*   By: alejanr2 <alejanr2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:11:34 by alejanr2          #+#    #+#             */
-/*   Updated: 2025/02/19 18:11:35 by alejanr2         ###   ########.fr       */
+/*   Updated: 2025/02/19 18:13:49 by alejanr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ int	get_min_position(t_stack *stack)
 	}
 	return (min_pos);
 }
+
 int	get_max_position(t_stack *stack)
 {
-	t_node *current;
-	int max;
-	int pos;
-	int max_pos;
+	t_node	*current;
+	int		max;
+	int		pos;
+	int		max_pos;
 
 	if (!stack->first_node)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: alejanr2 <alejanr2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:11:21 by alejanr2          #+#    #+#             */
-/*   Updated: 2025/02/19 18:11:22 by alejanr2         ###   ########.fr       */
+/*   Updated: 2025/02/19 18:16:40 by alejanr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ t_node	*get_last_and_second_last(t_stack *stack, t_node **second_last)
 	}
 	return (last);
 }
+
 void	reverse_rotate(t_stack *stack, char stack_name)
 {
 	t_node	*last;
