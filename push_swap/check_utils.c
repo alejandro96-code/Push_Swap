@@ -6,7 +6,7 @@
 /*   By: alejanr2 <alejanr2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:11:10 by alejanr2          #+#    #+#             */
-/*   Updated: 2025/02/19 18:17:22 by alejanr2         ###   ########.fr       */
+/*   Updated: 2025/02/19 18:11:11 by alejanr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_duplicates(t_stack *stack)
 
 int	is_sorted(t_stack *stack)
 {
-	t_node	*current;
+	t_node *current;
 
 	if (!stack || !stack->first_node)
 		return (1);
