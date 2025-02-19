@@ -1,81 +1,69 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   stack_utils.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alejanr2 <alejanr2@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 18:11:31 by alejanr2          #+#    #+#             */
-/*   Updated: 2025/02/19 18:11:32 by alejanr2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-int	stack_size(t_stack *stack)
+int stack_size(t_stack *stack)
 {
-	int		size;
-	t_node	*current;
+    int size;
+    t_node *current;
 
-	size = 0;
-	current = stack->first_node;
-	while (current)
-	{
-		size++;
-		current = current->next;
-	}
-	return (size);
+    size = 0;
+    current = stack->first_node;
+    while (current)
+    {
+        size++;
+        current = current->next;
+    }
+    return (size);
 }
 
-int	init_stack(t_stack **stack)
+int init_stack(t_stack **stack)
 {
-	*stack = malloc(sizeof(t_stack));
-	if (!*stack)
-		return (0);
-	(*stack)->first_node = NULL;
-	return (1);
+    *stack = malloc(sizeof(t_stack));
+    if (!*stack)
+        return (0);
+    (*stack)->first_node = NULL;
+    return (1);
 }
 
-int	add_number(t_stack *stack, char *str)
+int add_number(t_stack *stack, char *str)
 {
-	long	num;
-	t_node	*new_node;
-	t_node	*temp;
+    long    num;
+    t_node  *new_node;
+    t_node  *temp;
 
-	if (!is_number(str))
-		return (0);
-	num = ft_atol(str);
-	if (num > 2147483647 || num < -2147483647)
-		return (0);
-	new_node = malloc(sizeof(t_node));
-	if (!new_node)
-		return (0);
-	new_node->value = (int)num;
-	new_node->next = NULL;
-	if (!stack->first_node)
-		stack->first_node = new_node;
-	else
-	{
-		temp = stack->first_node;
-		while (temp->next)
-			temp = temp->next;
-		temp->next = new_node;
-	}
-	return (1);
+    if (!is_number(str))
+        return (0);
+    num = ft_atol(str);
+    if (num > 2147483647  || num < -2147483647 )
+        return (0);
+    new_node = malloc(sizeof(t_node));
+    if (!new_node)
+        return (0);
+    new_node->value = (int)num;
+    new_node->next = NULL;
+    if (!stack->first_node)
+        stack->first_node = new_node;
+    else
+    {
+        temp = stack->first_node;
+        while (temp->next)
+            temp = temp->next;
+        temp->next = new_node;
+    }
+    return (1);
 }
 
-int	process_arguments(int argc, char **argv, t_stack *a)
+int process_arguments(int argc, char **argv, t_stack *a)
 {
-	int	cont;
+    int cont;
 
-	cont = 1;
-	while (cont < argc)
-	{
-		if (!add_number(a, argv[cont]))
-			return (0);
-		cont++;
-	}
-	if (check_duplicates(a))
-		return (0);
-	return (1);
+    cont = 1;
+    while (cont < argc)
+    {
+        if (!add_number(a, argv[cont]))
+            return (0);
+        cont++;
+    }
+    if (check_duplicates(a))
+        return (0);
+    return (1);
 }
