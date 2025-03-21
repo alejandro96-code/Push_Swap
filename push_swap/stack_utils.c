@@ -59,7 +59,7 @@ int process_arguments(int argc, char **argv, t_stack *a)
     cont = 1;
     while (cont < argc)
     {
-        if (!add_number(a, argv[cont]))
+        if (!process_single_argument(argv[cont], a))
             return (0);
         cont++;
     }

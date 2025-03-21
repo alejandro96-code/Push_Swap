@@ -57,6 +57,10 @@ void big_sort(t_stack **a, t_stack **b);
 void free_stack(t_stack *stack);
 long ft_atol(const char *str);
 
+//split_utils.c
+int is_space(char c);
+int process_single_argument(char *arg, t_stack *stack);
+
 //main.c
 int main(int argc, char **argv);
 #endif

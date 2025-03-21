@@ -12,6 +12,7 @@ SRCS = main.c \
        stack_values.c \
        check_utils.c \
        memory.c \
+       split_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 
