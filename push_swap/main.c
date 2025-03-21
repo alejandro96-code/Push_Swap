@@ -1,29 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alejandro <alejandro@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/21 12:32:02 by alejandro         #+#    #+#             */
+/*   Updated: 2025/03/21 12:35:22 by alejandro        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_stack *a;
-    t_stack *b;
+	t_stack	*a;
+	t_stack	*b;
 
-    if (argc < 2)
-        return (0);   
-    if (!init_stack(&a) || !init_stack(&b) || \
-        !process_arguments(argc, argv, a) || is_sorted(a))
-    {
-        free_stack(a);
-        free_stack(b);
-        write(2, "Error\n", 6);
-        return (1);
-    }
-    if (stack_size(a) == 2)
-        swap(a, 'a');
-    else if (stack_size(a) == 3)
-        sort_three(a);
-    else if (stack_size(a) <= 5)
-        sort_five(a, b);
-    else
-        big_sort(&a, &b);
-    free_stack(a);
-    free_stack(b);
-    return (0);
+	if (argc < 2)
+		return (0);
+	if (!init_stack(&a) || !init_stack(&b) || !process_arguments(argc, argv, a)
+		|| is_sorted(a))
+	{
+		free_stack(a);
+		free_stack(b);
+		write(2, "Error\n", 6);
+		return (1);
+	}
+	if (stack_size(a) == 2)
+		swap(a, 'a');
+	else if (stack_size(a) == 3)
+		sort_three(a);
+	else if (stack_size(a) <= 5)
+		sort_five(a, b);
+	else
+		big_sort(&a, &b);
+	free_stack(a);
+	free_stack(b);
+	return (0);
 }
