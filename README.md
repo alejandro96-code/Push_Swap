@@ -73,52 +73,47 @@ Entrada:
 ```
 STACK A: [2 3 1]
 STACK B: []
-
 ```
+Funcion:
+1) `rra` mueve el 1 al inicio y queda `1 2 3`.
 
 Salida posible:
 
+### 1)
 ```
 STACK A: [1 2 3]
 STACK B: []
-
 ```
-
-Explicacion corta:
-- `rra` mueve el 1 al inicio y queda `1 2 3`.
-
-
 
 ## Ejemplo sort_five
 
 Entrada:
-
 ```
 STACK A: [3 5 1 4 2]
 STACK B: []
 ```
 
-Idea (resumen):
-Paso 1 - Empuja los dos menores a B con `pb`.
-Paso 2 - Ordena los 3 restantes con `sort_three`.
-Paso 3 - Devuelve con `pa pa`.
+Funcion:
+ 1) Empuja los dos menores a B con `pb`.
+ 2) Ordena los 3 restantes con `sort_three`.
+ 3) Devuelve con `pa pa`.
 
 Salida posible:
 
-Paso 1:
+### 1)
 ```
 STACK A: [3 5 4 ]
 STACK B: [1 2]
 
 ```
 
-Paso 2:
+### 2)
 ```
 STACK A: [3 4 5 ]
 STACK B: [1 2]
 ```
 
-Paso 3:
+### 3)
 ```
 STACK A: [1 2 3 4 5 ]
 STACK B: []
