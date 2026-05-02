@@ -3,13 +3,6 @@
 Este proyecto ordena una lista de enteros usando dos stacks (A y B) y un
 conjunto limitado de operaciones, buscando el menor numero de movimientos.
 
-En este repositorio hay dos versiones:
-
-- `push_swap/`: version base.
-- `push_swap_turco/`: version optimizada (algoritmo turco/cost-based).
-
-El README describe la version `push_swap_turco/`.
-
 ---
 
 ## Operaciones permitidas
@@ -26,6 +19,8 @@ El README describe la version `push_swap_turco/`.
 | `rra` | reverse rotate a: el ultimo de A pasa al inicio |
 | `rrb` | reverse rotate b: el ultimo de B pasa al inicio |
 | `rrr` | `rra` y `rrb` a la vez |
+
+Tambien esta permitida ss pero no la hemos implementado porque no la llegamos a usar.
 
 ---
 
@@ -162,8 +157,10 @@ La variable `cont` empieza en 0 y se empuja a B asi:
 Con 20 numeros, el primer bloque efectivo es indices 0..15.
 Eso deja la mayor parte en B y 3 nodos en A.
 
+```
 Stack A: [6, 18, 42]
 Stack B: [24, 21, 27, 11, 30, 14, 25, 19, 7, 3, 2, 5, 1, 9, 4, 16, 8]
+```
 
 ### 3) Ordenar los 3 restantes en A
 Se usa `sort_three` para dejar A ordenada con esos 3.
@@ -183,43 +180,36 @@ Como iria quedando:
 ```
 Stack A: [6, 18, 42]
 Stack B: [24, 21, 27, 11, 30, 14, 25, 19, 7, 3, 2, 5, 1, 9, 4, 16, 8]
-
 ```
 
 ```
 Stack A: [42, 6, 18]
 Stack B: [21, 27, 11, 30, 14, 25, 19, 7, 3, 2, 5, 1, 9, 4, 16, 8, 24]
-
 ```
 
 ```
 Stack A: [42, 6, 18, 21]
 Stack B: [27, 11, 30, 14, 25, 19, 7, 3, 2, 5, 1, 9, 4, 16, 8, 24]
-
 ```
 
 ```
 Stack A: [42, 6, 18, 21, 27]
 Stack B: [11, 30, 14, 25, 19, 7, 3, 2, 5, 1, 9, 4, 16, 8, 24]
-
 ```
 
 ```
 Stack A: [42, 6, 18, 21, 27]
 Stack B: [30, 14, 25, 19, 7, 3, 2, 5, 1, 9, 4, 16, 8, 24, 11]
-
 ```
 
 ```
 Stack A: [30, 42, 6, 18, 21, 27]
 Stack B: [14, 25, 19, 7, 3, 2, 5, 1, 9, 4, 16, 8, 24, 11]
-
 ```
 
 ```
 Stack A: [30, 42, 6, 18, 21, 27]
 Stack B: [25, 19, 7, 3, 2, 5, 1, 9, 4, 16, 8, 24, 11, 14]
-
 ```
 
  - Aqui sabemos que el siguiente numero es el 25 y es mas barato mover le 27 a priemra posicion y despues insertar el 25 en primera posicion
@@ -230,7 +220,6 @@ Stack B: [25, 19, 7, 3, 2, 5, 1, 9, 4, 16, 8, 24, 11, 14]
 
 Stack A: [25, 27, 30, 42, 6, 18, 21]
 Stack B: [19, 7, 3, 2, 5, 1, 9, 4, 16, 8, 24, 11, 14]
-
 ```
 y con el siguiente (el 19) pasas lo mismo
 
@@ -240,7 +229,6 @@ Stack B: [19, 7, 3, 2, 5, 1, 9, 4, 16, 8, 24, 11, 14]
 
 Stack A: [19, 21, 25, 27, 30, 42, 6, 18]
 Stack B: [7, 3, 2, 5, 1, 9, 4, 16, 8, 24, 11, 14]
-
 ```
 
 Y ahora como sabemos que el index del ultimo numero es el anterior al primer numero de la fila debemos
@@ -249,7 +237,6 @@ pasarlo a primera posicion antes de continuar
 ```
 Stack A: [18, 19, 21, 25, 27, 30, 42, 6]
 Stack B: [7, 3, 2, 5, 1, 9, 4, 16, 8, 24, 11, 14]
-
 ```
 
 Se repite hasta vaciar B.
@@ -261,7 +248,6 @@ Es posbile que cuando termine el bucle se nos quede asi:
 ```
 Stack A: [2, 3, 4, 5, 6, 7, 8, 9, 11, 14, 16, 18, 19, 21, 24, 25, 27, 30, 42, 1]
 Stack B; []
-
 ```
 usaremos `final_rotate` sube el indice minimo a la cima.
 
@@ -270,6 +256,5 @@ Resultado: A ordenada de menor a mayor, B vacia.
 ```
 Stack A: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 14, 16, 18, 19, 21, 24, 25, 27, 30, 42]
 Stack B; []
-
 ```
 ---
