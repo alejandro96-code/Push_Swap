@@ -119,9 +119,7 @@ STACK A: [1 2 3 4 5 ]
 STACK B: []
 ```
 
-
-
-## Ejemplo grande (explicacion de indices)
+## Ejemplo grande (Algoritmo turco)
 
 Entrada:
 
