@@ -1,5 +1,15 @@
 {
     "files.associations": {
         "push_swap.h": "c"
+    },
+    "chat.tools.terminal.autoApprove": {
+        "/^cp -r /home/aleja/Push_Swap/push_swap /home/aleja/Push_Swap/push_swap_turco$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^cd /home/aleja/Push_Swap/push_swap_turco && python3 - <<'PY'\nfrom collections import deque\nimport subprocess, shlex\n\nnums = \\[42,7,19,3,25,14,2,30,11,5,27,1,9,21,4,16,8,24,6,18\\]\narg = ' '\\.join\\(map\\(str, nums\\)\\)\nops = subprocess\\.check_output\\(shlex\\.split\\(f\"\\./push_swap \\{arg\\}\"\\), text=True\\)\\.splitlines\\(\\)\n\na = deque\\(nums\\)\nb = deque\\(\\)\n\ndef sa\\(a\\):\n    if len\\(a\\) >= 2:\n        a\\[0\\], a\\[1\\] = a\\[1\\], a\\[0\\]\n\ndef sb\\(b\\):\n    if len\\(b\\) >= 2:\n        b\\[0\\], b\\[1\\] = b\\[1\\], b\\[0\\]\n\ndef pa\\(a, b\\):\n    if b:\n        a\\.appendleft\\(b\\.popleft\\(\\)\\)\n\ndef pb\\(a, b\\):\n    if a:\n        b\\.appendleft\\(a\\.popleft\\(\\)\\)\n\ndef ra\\(a\\):\n    if a:\n        a\\.append\\(a\\.popleft\\(\\)\\)\n\ndef rb\\(b\\):\n    if b:\n        b\\.append\\(b\\.popleft\\(\\)\\)\n\ndef rra\\(a\\):\n    if a:\n        a\\.appendleft\\(a\\.pop\\(\\)\\)\n\ndef rrb\\(b\\):\n    if b:\n        b\\.appendleft\\(b\\.pop\\(\\)\\)\n\ntrace = \\[\\]\n\ndef record\\(step, op\\):\n    trace\\.append\\(\\(step, op, list\\(a\\), list\\(b\\)\\)\\)\n\n# run until first pa after A reaches 3\nstep = 0\nfor op in ops:\n    if op == 'sa': sa\\(a\\)\n    elif op == 'sb': sb\\(b\\)\n    elif op == 'ss': sa\\(a\\); sb\\(b\\)\n    elif op == 'pa': pa\\(a,b\\)\n    elif op == 'pb': pb\\(a,b\\)\n    elif op == 'ra': ra\\(a\\)\n    elif op == 'rb': rb\\(b\\)\n    elif op == 'rr': ra\\(a\\); rb\\(b\\)\n    elif op == 'rra': rra\\(a\\)\n    elif op == 'rrb': rrb\\(b\\)\n    elif op == 'rrr': rra\\(a\\); rrb\\(b\\)\n    step \\+= 1\n    if len\\(a\\) == 3:\n        record\\(step, op\\)\n        # record next few steps as well\n        break\n\n# now record next 10 ops for context\ncount = 0\nfor op in ops\\[step:\\]:\n    if op == 'sa': sa\\(a\\)\n    elif op == 'sb': sb\\(b\\)\n    elif op == 'ss': sa\\(a\\); sb\\(b\\)\n    elif op == 'pa': pa\\(a,b\\)\n    elif op == 'pb': pb\\(a,b\\)\n    elif op == 'ra': ra\\(a\\)\n    elif op == 'rb': rb\\(b\\)\n    elif op == 'rr': ra\\(a\\); rb\\(b\\)\n    elif op == 'rra': rra\\(a\\); rrb\\(b\\)\n    elif op == 'rrb': rrb\\(b\\)\n    elif op == 'rrr': rra\\(a\\); rrb\\(b\\)\n    step \\+= 1\n    record\\(step, op\\)\n    count \\+= 1\n    if count >= 15:\n        break\n\nfor s, op, A, B in trace:\n    print\\(f\"\\{s:03d\\} \\{op\\} \\| A \\{A\\} \\| B \\{B\\}\"\\)\nPY$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
     }
 }

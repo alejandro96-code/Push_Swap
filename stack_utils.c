@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alejandro <alejandro@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aleja <aleja@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 12:34:16 by alejandro         #+#    #+#             */
-/*   Updated: 2025/03/21 12:35:28 by alejandro        ###   ########.fr       */
+/*   Updated: 2026/05/02 17:01:15 by aleja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	add_number(t_stack *stack, char *str)
 	if (!new_node)
 		return (0);
 	new_node->value = (int)num;
+	new_node->index = -1;
 	new_node->next = NULL;
 	if (!stack->first_node)
 		stack->first_node = new_node;

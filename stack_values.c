@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_values.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alejandro <alejandro@student.42.fr>        +#+  +:+       +#+        */
+/*   By: aleja <aleja@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 12:34:21 by alejandro         #+#    #+#             */
-/*   Updated: 2025/03/21 12:39:21 by alejandro        ###   ########.fr       */
+/*   Updated: 2026/05/02 17:57:25 by aleja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,6 @@ int	get_min_value(t_stack *stack)
 	return (min);
 }
 
-int	get_max_value(t_stack *stack)
-{
-	t_node	*current;
-	int		max;
-
-	if (!stack->first_node)
-		return (0);
-	current = stack->first_node;
-	max = current->value;
-	while (current)
-	{
-		if (current->value > max)
-			max = current->value;
-		current = current->next;
-	}
-	return (max);
-}
 
 int	get_min_position(t_stack *stack)
 {
@@ -74,28 +57,3 @@ int	get_min_position(t_stack *stack)
 	return (min_pos);
 }
 
-int	get_max_position(t_stack *stack)
-{
-	t_node	*current;
-	int		max;
-	int		pos;
-	int		max_pos;
-
-	if (!stack->first_node)
-		return (-1);
-	current = stack->first_node;
-	max = current->value;
-	pos = 0;
-	max_pos = 0;
-	while (current)
-	{
-		if (current->value > max)
-		{
-			max = current->value;
-			max_pos = pos;
-		}
-		pos++;
-		current = current->next;
-	}
-	return (max_pos);
-}
