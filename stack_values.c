@@ -6,7 +6,7 @@
 /*   By: aleja <aleja@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 12:34:21 by alejandro         #+#    #+#             */
-/*   Updated: 2026/05/02 17:57:25 by aleja            ###   ########.fr       */
+/*   Updated: 2026/05/03 13:57:45 by aleja            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	get_min_value(t_stack *stack)
 	}
 	return (min);
 }
-
 
 int	get_min_position(t_stack *stack)
 {
@@ -56,4 +55,3 @@ int	get_min_position(t_stack *stack)
 	}
 	return (min_pos);
 }
-
